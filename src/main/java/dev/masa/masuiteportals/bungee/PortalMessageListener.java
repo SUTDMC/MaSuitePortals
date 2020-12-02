@@ -71,6 +71,8 @@ public class PortalMessageListener implements Listener {
 
                         } else if (portal.getType().equals("warp")) {
                             portal.setDestination(destination);
+                        } else if (portal.getType().equals("host_transfer")) {
+                            portal.setDestination(destination);
                         }
                         portal.setFillType(in.readUTF());
 
@@ -85,7 +87,9 @@ public class PortalMessageListener implements Listener {
 
                         // Save the portal
                         if (plugin.getPortalService().createPortal(portal)) {
-                            formator.sendMessage(p, config.load("portals", "messages.yml").getString("portal.set").replace("%name%", portal.getName()).replace("%destination%", portal.getDestination()));
+                            System.out.println("[MaSuite] [Portals] Portal created");
+                            String template = "&aCreated portal with name %name% and destination %destination%";
+                            formator.sendMessage(p, template.replace("%name%", portal.getName()).replace("%destination%", portal.getDestination()));
                             new BungeePluginChannel(plugin, plugin.getProxy().getServerInfo(portal.getMinLocation().getServer()), "MaSuitePortals", "CreatePortal", portal.serialize()).send();
                         } else {
                             System.out.println("[MaSuite] [Portals] There was an error during saving process.");

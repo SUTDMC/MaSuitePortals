@@ -146,6 +146,8 @@ public class PortalManager {
             new BukkitPluginChannel(plugin, player, "ConnectOther", player.getName(), portal.getDestination()).send();
         } else if (portal.getType().equals("warp")) {
             new BukkitPluginChannel(plugin, player, "Warp", player.getName(), portal.getDestination(), true, true, true, true).send();
+        } else if (portal.getType().equals("host_transfer")) {
+            player.kickPlayer("host_transfer=" + portal.getDestination());
         }
     }
 }

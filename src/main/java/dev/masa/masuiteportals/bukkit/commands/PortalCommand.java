@@ -22,7 +22,7 @@ public class PortalCommand extends BaseCommand {
     @CommandAlias("setportal|createportal|portalset")
     @CommandPermission("masuiteportals.portal.set")
     @Description("Creates a new portal or updates existing portal")
-    @CommandCompletion("@portals warp|server * *")
+    @CommandCompletion("@portals warp|server|host_transfer * *")
     public void setPortalCommand(Player player, @Single String name, @Single String type, @Single String destination, @Single String fillType) {
 
         LocalSession localSession = plugin.we.getSession(player);
